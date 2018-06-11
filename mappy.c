@@ -109,18 +109,18 @@ uint8_t *flood(int len)
     return new;
 }
 
-bounds query_bounds(sheet src, int index, bounds s_glyph)
+bounds query_bounds(sheet src, int s_index, bounds s_glyph)
 {
     int x[2] = {INT_MAX, -1};
     int y[2] = {INT_MAX, -1};
     for (int i = 0; i < s_glyph.h; i++)
     {
-        int shift = (index + i * src.w) * STBI_rgb_alpha;
+        int shift = (s_index + i * src.w) * STBI_rgb_alpha;
         for (int j = shift; j < shift + s_glyph.w * STBI_rgb_alpha; j+= STBI_rgb_alpha)
         {
             if (compare(src.empty, spot(src.buf, j)) != 0)
             {
-                int col = (j % shift) / STBI_rgb_alpha + 1;
+                int col = (j - shift) / STBI_rgb_alpha + 1;
                 int row = i + 1;
                 y[0] = row < y[0] ? row : y[0];
                 x[0] = col < x[0] ? col : x[0];
@@ -297,7 +297,7 @@ void help()
 
 int main(int argc, char **argv)
 {
-    char* file = argv[1];
+    char *file = argv[1];
     sheet loaded = load(file);
     if (!loaded.buf)
     {

@@ -1,7 +1,7 @@
 # mappy
 Takes as input a single character sheet to produce an AngelCode BMFont description and an accompanying packed texture atlas. The input character sheet must consist of only two colors and have no padding on the edges.
 
-![Sample output](https://my.mixtape.moe/dwdzjq.png)
+![Sample output](https://www.dropbox.com/s/i0m3osmz2eo0fod/sample.png?raw=1)
 
 ## Usage
 ```
